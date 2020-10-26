@@ -1,8 +1,7 @@
-// part of 'photos_bloc.dart';
+part of 'photos_bloc.dart';
 
-// abstract class PhotosEvent extends Equatable {
-//   const PhotosEvent();
-
-//   @override
-//   List<Object> get props => [];
-// }
+@freezed
+abstract class PhotosEvent with _$PhotosEvent {
+  const factory PhotosEvent.loadeImgs() = LoadeImgs;
+  // const factory PhotosEvent.deleteImg(int indx) = DeleteImg;
+}

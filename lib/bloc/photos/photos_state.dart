@@ -1,11 +1,9 @@
-// part of 'photos_bloc.dart';
+part of 'photos_bloc.dart';
 
-// @freezed
-// abstract class PhotosState with _$PhotosState {
-//   const PhotosState();
+@freezed
+abstract class PhotosState with _$PhotosState {
+  const factory PhotosState({List<Asset> images, bool loadedData}) =
+      _PhotosState;
 
-//   @override
-//   List<Object> get props => [];
-// }
-
-// class PhotosInitial extends PhotosState {}
+  factory PhotosState.initial() => PhotosState(images: [], loadedData: false);
+}
