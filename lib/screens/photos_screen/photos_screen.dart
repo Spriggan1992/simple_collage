@@ -1,6 +1,8 @@
 import 'package:collage/bloc/photos/photos_bloc.dart';
 import 'package:collage/config/config.dart';
+import 'package:collage/config/status.dart';
 import 'package:collage/design/theme.dart';
+import 'package:collage/screens/screens.dart';
 import 'package:collage/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,13 +19,11 @@ class PhotosScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: BlocConsumer<PhotosBloc, PhotosState>(
-          listener: (context, state) {
-            if (state.images.isEmpty) {
-              Navigator.pop(context);
-            }
-          },
+        body: BlocBuilder<PhotosBloc, PhotosState>(
           builder: (context, state) {
+            if (state.loadedData == LoadedImgs.failure) {
+              return Center(child: CircularProgressIndicator());
+            }
             return Container(
                 width: SizeConfig.blockSizeHorizontal * 100,
                 height: SizeConfig.blockSizeVertical * 100,

@@ -25,12 +25,12 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
     yield* event.map(
       loadeImgs: (event) async* {
         final List<Asset> fetchedImgs = await _photosRepository.getImgs();
-        if (fetchedImgs == null || fetchedImgs.isEmpty) {
+        print("fetchedImgs : $fetchedImgs");
+        if (fetchedImgs == [] || fetchedImgs.isEmpty)
           yield state.copyWith(loadedData: LoadedImgs.failure, images: []);
-        } else {
+        else
           yield state.copyWith(
-              loadedData: LoadedImgs.failure, images: fetchedImgs);
-        }
+              loadedData: LoadedImgs.loaded, images: fetchedImgs);
       },
     );
   }

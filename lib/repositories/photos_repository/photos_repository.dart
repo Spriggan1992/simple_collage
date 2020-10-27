@@ -21,23 +21,17 @@ class PhotosRepository extends BasePhotosRepository {
           actionBarColor: "#abcdef",
           actionBarTitle: "Example App",
           allViewTitle: "All Photos",
-          // useDetailsView: false,
+          useDetailsView: false,
           selectCircleStrokeColor: "#000000",
         ),
       );
     } on Exception catch (e) {
       error = e.toString();
     }
+    if (resultList == null || resultList.isEmpty) {
+      return resultList = [];
+    }
     print('resultList $resultList');
     return resultList;
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    // if (!mounted) return;
-
-    // setState(() {
-    //   images = resultList;
-    //   _error = error;
-    // });
   }
 }

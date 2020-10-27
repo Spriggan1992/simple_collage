@@ -7,4 +7,5 @@ abstract class PhotosState with _$PhotosState {
 
   factory PhotosState.initial() =>
       PhotosState(images: [], loadedData: LoadedImgs.uknown);
+  factory PhotosState.success() => PhotosState();
 }
