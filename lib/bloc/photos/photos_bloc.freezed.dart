@@ -148,7 +148,7 @@ class _$PhotosStateTearOff {
   const _$PhotosStateTearOff();
 
 // ignore: unused_element
-  _PhotosState call({List<Asset> images, bool loadedData}) {
+  _PhotosState call({List<Asset> images, LoadedImgs loadedData}) {
     return _PhotosState(
       images: images,
       loadedData: loadedData,
@@ -163,7 +163,7 @@ const $PhotosState = _$PhotosStateTearOff();
 /// @nodoc
 mixin _$PhotosState {
   List<Asset> get images;
-  bool get loadedData;
+  LoadedImgs get loadedData;
 
   $PhotosStateCopyWith<PhotosState> get copyWith;
 }
@@ -173,7 +173,7 @@ abstract class $PhotosStateCopyWith<$Res> {
   factory $PhotosStateCopyWith(
           PhotosState value, $Res Function(PhotosState) then) =
       _$PhotosStateCopyWithImpl<$Res>;
-  $Res call({List<Asset> images, bool loadedData});
+  $Res call({List<Asset> images, LoadedImgs loadedData});
 }
 
 /// @nodoc
@@ -192,7 +192,7 @@ class _$PhotosStateCopyWithImpl<$Res> implements $PhotosStateCopyWith<$Res> {
     return _then(_value.copyWith(
       images: images == freezed ? _value.images : images as List<Asset>,
       loadedData:
-          loadedData == freezed ? _value.loadedData : loadedData as bool,
+          loadedData == freezed ? _value.loadedData : loadedData as LoadedImgs,
     ));
   }
 }
@@ -204,7 +204,7 @@ abstract class _$PhotosStateCopyWith<$Res>
           _PhotosState value, $Res Function(_PhotosState) then) =
       __$PhotosStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<Asset> images, bool loadedData});
+  $Res call({List<Asset> images, LoadedImgs loadedData});
 }
 
 /// @nodoc
@@ -225,7 +225,7 @@ class __$PhotosStateCopyWithImpl<$Res> extends _$PhotosStateCopyWithImpl<$Res>
     return _then(_PhotosState(
       images: images == freezed ? _value.images : images as List<Asset>,
       loadedData:
-          loadedData == freezed ? _value.loadedData : loadedData as bool,
+          loadedData == freezed ? _value.loadedData : loadedData as LoadedImgs,
     ));
   }
 }
@@ -237,7 +237,7 @@ class _$_PhotosState implements _PhotosState {
   @override
   final List<Asset> images;
   @override
-  final bool loadedData;
+  final LoadedImgs loadedData;
 
   @override
   String toString() {
@@ -267,13 +267,13 @@ class _$_PhotosState implements _PhotosState {
 }
 
 abstract class _PhotosState implements PhotosState {
-  const factory _PhotosState({List<Asset> images, bool loadedData}) =
+  const factory _PhotosState({List<Asset> images, LoadedImgs loadedData}) =
       _$_PhotosState;
 
   @override
   List<Asset> get images;
   @override
-  bool get loadedData;
+  LoadedImgs get loadedData;
   @override
   _$PhotosStateCopyWith<_PhotosState> get copyWith;
 }

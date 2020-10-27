@@ -28,7 +28,7 @@ class MainBtn extends StatelessWidget {
               height: defaultSize * 18,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white.withOpacity(0.5),
+                color: DesignTheme.colors.btnColor,
               ),
               child: Icon(
                 Icons.add_a_photo_outlined,

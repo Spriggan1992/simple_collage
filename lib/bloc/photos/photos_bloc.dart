@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:collage/config/status.dart';
 import 'package:collage/repositories/repositories.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
@@ -21,13 +22,16 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
 
   @override
   Stream<PhotosState> mapEventToState(PhotosEvent event) async* {
-    yield* event.map(loadeImgs: (event) async* {
-      final List<Asset> fetchedImgs = await _photosRepository.getImgs();
-      if (fetchedImgs == null) {
-        yield state.copyWith(loadedData: false, images: []);
-      } else {
-        yield state.copyWith(loadedData: true, images: fetchedImgs);
-      }
-    });
+    yield* event.map(
+      loadeImgs: (event) async* {
+        final List<Asset> fetchedImgs = await _photosRepository.getImgs();
+        if (fetchedImgs == null || fetchedImgs.isEmpty) {
+          yield state.copyWith(loadedData: LoadedImgs.failure, images: []);
+        } else {
+          yield state.copyWith(
+              loadedData: LoadedImgs.failure, images: fetchedImgs);
+        }
+      },
+    );
   }
 }
