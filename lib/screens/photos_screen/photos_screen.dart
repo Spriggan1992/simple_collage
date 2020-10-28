@@ -19,7 +19,12 @@ class PhotosScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: BlocBuilder<PhotosBloc, PhotosState>(
+        body: BlocConsumer<PhotosBloc, PhotosState>(
+          listener: (context, state) {
+            if (state.images.isEmpty) {
+              Navigator.pushNamed(context, WelcomeScreen.id);
+            }
+          },
           builder: (context, state) {
             if (state.loadedData == LoadedImgs.failure) {
               return Center(child: CircularProgressIndicator());
@@ -36,27 +41,38 @@ class PhotosScreen extends StatelessWidget {
                     SliverFillRemaining(
                       hasScrollBody: false,
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           TitleHolder(title: 'Swap to delete'),
-                          Wrap(
-                            runSpacing: defaultSize * 3,
-                            spacing: defaultSize * 2,
-                            children: [
-                              ...state.images.map(
-                                (item) => AssetThumb(
-                                    // key: Key(index.toString()),
-                                    quality: 100,
-                                    asset: item,
-                                    width: defaultSize.toInt() * 20,
-                                    height: defaultSize.toInt() * 20),
-                              ),
-                              Container(
-                                color: DesignTheme.colors.btnColor,
-                                width: defaultSize * 18.3,
-                                height: defaultSize * 18.3,
-                                child: Icon(Icons.add_box),
-                              ),
-                            ],
+                          Expanded(
+                            child: Wrap(
+                              runSpacing: defaultSize * 3,
+                              spacing: defaultSize * 2,
+                              children: [
+                                ...buildGrid(state.images, defaultSize),
+                                // ...state.images.map((item) {
+                                //   return Dismissible(
+                                //     onDismissed: (direction) {},
+                                //     key: Key(),
+                                //     child: AssetThumb(
+                                //         quality: 100,
+                                //         asset: item,
+                                //         width: defaultSize.toInt() * 20,
+                                //         height: defaultSize.toInt() * 20),
+                                //   );
+                                // },
+                                // ),
+                                Container(
+                                  color: DesignTheme.colors.btnColor,
+                                  width: defaultSize * 18.3,
+                                  height: defaultSize * 18.3,
+                                  child: Icon(
+                                    Icons.add_circle_outline_outlined,
+                                    size: defaultSize * 4,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -105,5 +121,21 @@ class PhotosScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<Widget> buildGrid(List<Asset> imgs, double defaultSize) {
+    List<Widget> widgetList = [];
+    for (int i = 0; i < imgs.length; i++) {
+      widgetList.add(Dismissible(
+        onDismissed: (direction) {},
+        key: Key(i.toString()),
+        child: AssetThumb(
+            quality: 100,
+            asset: imgs[i],
+            width: defaultSize.toInt() * 20,
+            height: defaultSize.toInt() * 20),
+      ));
+    }
+    return widgetList;
   }
 }

@@ -16,12 +16,13 @@ class PhotosRepository extends BasePhotosRepository {
         maxImages: 300,
         enableCamera: false,
         // selectedAssets: images,
+
         cupertinoOptions: CupertinoOptions(takePhotoIcon: "chat"),
         materialOptions: MaterialOptions(
           actionBarColor: "#abcdef",
           actionBarTitle: "Example App",
           allViewTitle: "All Photos",
-          useDetailsView: false,
+          useDetailsView: true,
           selectCircleStrokeColor: "#000000",
         ),
       );
