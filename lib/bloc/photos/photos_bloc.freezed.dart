@@ -17,6 +17,18 @@ class _$PhotosEventTearOff {
   LoadeImgs loadeImgs() {
     return const LoadeImgs();
   }
+
+// ignore: unused_element
+  DeleteImg deleteImg(Asset img) {
+    return DeleteImg(
+      img,
+    );
+  }
+
+// ignore: unused_element
+  UpdateImg updateImg() {
+    return const UpdateImg();
+  }
 }
 
 /// @nodoc
@@ -28,19 +40,27 @@ mixin _$PhotosEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result loadeImgs(),
+    @required Result deleteImg(Asset img),
+    @required Result updateImg(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result loadeImgs(),
+    Result deleteImg(Asset img),
+    Result updateImg(),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result loadeImgs(LoadeImgs value),
+    @required Result deleteImg(DeleteImg value),
+    @required Result updateImg(UpdateImg value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result loadeImgs(LoadeImgs value),
+    Result deleteImg(DeleteImg value),
+    Result updateImg(UpdateImg value),
     @required Result orElse(),
   });
 }
@@ -98,8 +118,12 @@ class _$LoadeImgs implements LoadeImgs {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result loadeImgs(),
+    @required Result deleteImg(Asset img),
+    @required Result updateImg(),
   }) {
     assert(loadeImgs != null);
+    assert(deleteImg != null);
+    assert(updateImg != null);
     return loadeImgs();
   }
 
@@ -107,6 +131,8 @@ class _$LoadeImgs implements LoadeImgs {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result loadeImgs(),
+    Result deleteImg(Asset img),
+    Result updateImg(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -120,8 +146,12 @@ class _$LoadeImgs implements LoadeImgs {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result loadeImgs(LoadeImgs value),
+    @required Result deleteImg(DeleteImg value),
+    @required Result updateImg(UpdateImg value),
   }) {
     assert(loadeImgs != null);
+    assert(deleteImg != null);
+    assert(updateImg != null);
     return loadeImgs(this);
   }
 
@@ -129,6 +159,8 @@ class _$LoadeImgs implements LoadeImgs {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result loadeImgs(LoadeImgs value),
+    Result deleteImg(DeleteImg value),
+    Result updateImg(UpdateImg value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -141,6 +173,218 @@ class _$LoadeImgs implements LoadeImgs {
 
 abstract class LoadeImgs implements PhotosEvent {
   const factory LoadeImgs() = _$LoadeImgs;
+}
+
+/// @nodoc
+abstract class $DeleteImgCopyWith<$Res> {
+  factory $DeleteImgCopyWith(DeleteImg value, $Res Function(DeleteImg) then) =
+      _$DeleteImgCopyWithImpl<$Res>;
+  $Res call({Asset img});
+}
+
+/// @nodoc
+class _$DeleteImgCopyWithImpl<$Res> extends _$PhotosEventCopyWithImpl<$Res>
+    implements $DeleteImgCopyWith<$Res> {
+  _$DeleteImgCopyWithImpl(DeleteImg _value, $Res Function(DeleteImg) _then)
+      : super(_value, (v) => _then(v as DeleteImg));
+
+  @override
+  DeleteImg get _value => super._value as DeleteImg;
+
+  @override
+  $Res call({
+    Object img = freezed,
+  }) {
+    return _then(DeleteImg(
+      img == freezed ? _value.img : img as Asset,
+    ));
+  }
+}
+
+/// @nodoc
+class _$DeleteImg implements DeleteImg {
+  const _$DeleteImg(this.img) : assert(img != null);
+
+  @override
+  final Asset img;
+
+  @override
+  String toString() {
+    return 'PhotosEvent.deleteImg(img: $img)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is DeleteImg &&
+            (identical(other.img, img) ||
+                const DeepCollectionEquality().equals(other.img, img)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(img);
+
+  @override
+  $DeleteImgCopyWith<DeleteImg> get copyWith =>
+      _$DeleteImgCopyWithImpl<DeleteImg>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result loadeImgs(),
+    @required Result deleteImg(Asset img),
+    @required Result updateImg(),
+  }) {
+    assert(loadeImgs != null);
+    assert(deleteImg != null);
+    assert(updateImg != null);
+    return deleteImg(img);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result loadeImgs(),
+    Result deleteImg(Asset img),
+    Result updateImg(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (deleteImg != null) {
+      return deleteImg(img);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result loadeImgs(LoadeImgs value),
+    @required Result deleteImg(DeleteImg value),
+    @required Result updateImg(UpdateImg value),
+  }) {
+    assert(loadeImgs != null);
+    assert(deleteImg != null);
+    assert(updateImg != null);
+    return deleteImg(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result loadeImgs(LoadeImgs value),
+    Result deleteImg(DeleteImg value),
+    Result updateImg(UpdateImg value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (deleteImg != null) {
+      return deleteImg(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DeleteImg implements PhotosEvent {
+  const factory DeleteImg(Asset img) = _$DeleteImg;
+
+  Asset get img;
+  $DeleteImgCopyWith<DeleteImg> get copyWith;
+}
+
+/// @nodoc
+abstract class $UpdateImgCopyWith<$Res> {
+  factory $UpdateImgCopyWith(UpdateImg value, $Res Function(UpdateImg) then) =
+      _$UpdateImgCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$UpdateImgCopyWithImpl<$Res> extends _$PhotosEventCopyWithImpl<$Res>
+    implements $UpdateImgCopyWith<$Res> {
+  _$UpdateImgCopyWithImpl(UpdateImg _value, $Res Function(UpdateImg) _then)
+      : super(_value, (v) => _then(v as UpdateImg));
+
+  @override
+  UpdateImg get _value => super._value as UpdateImg;
+}
+
+/// @nodoc
+class _$UpdateImg implements UpdateImg {
+  const _$UpdateImg();
+
+  @override
+  String toString() {
+    return 'PhotosEvent.updateImg()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is UpdateImg);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result loadeImgs(),
+    @required Result deleteImg(Asset img),
+    @required Result updateImg(),
+  }) {
+    assert(loadeImgs != null);
+    assert(deleteImg != null);
+    assert(updateImg != null);
+    return updateImg();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result loadeImgs(),
+    Result deleteImg(Asset img),
+    Result updateImg(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateImg != null) {
+      return updateImg();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result loadeImgs(LoadeImgs value),
+    @required Result deleteImg(DeleteImg value),
+    @required Result updateImg(UpdateImg value),
+  }) {
+    assert(loadeImgs != null);
+    assert(deleteImg != null);
+    assert(updateImg != null);
+    return updateImg(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result loadeImgs(LoadeImgs value),
+    Result deleteImg(DeleteImg value),
+    Result updateImg(UpdateImg value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateImg != null) {
+      return updateImg(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateImg implements PhotosEvent {
+  const factory UpdateImg() = _$UpdateImg;
 }
 
 /// @nodoc
