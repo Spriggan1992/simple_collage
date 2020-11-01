@@ -38,12 +38,8 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
         yield state.copyWith(images: updatedImgs);
       },
       updateImg: (event) async* {
-        final List<Asset> fetchedImgs =
+        final List<Asset> updatedImgs =
             await _photosRepository.getImgs(images: state.images);
-
-        final allFetchedImgs = [...state.images, ...fetchedImgs];
-        final updatedImgs =
-            state.images.where((img) => !fetchedImgs.contains(img)).toList();
 
         yield state.copyWith(images: updatedImgs);
       },
