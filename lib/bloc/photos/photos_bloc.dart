@@ -15,6 +15,7 @@ part 'photos_bloc.freezed.dart';
 @injectable
 class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
   final PhotosRepository _photosRepository;
+
   PhotosBloc({
     PhotosRepository photosRepository,
   })  : _photosRepository = photosRepository,

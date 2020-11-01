@@ -39,7 +39,22 @@ class Body extends StatelessWidget {
                   crossAxisCount: 2,
                   mainAxisSpacing: defaultSize * 2,
                   crossAxisSpacing: defaultSize * 2,
-                  children: buildGrid(context, state.images, defaultSize)),
+                  children: [
+                    ...buildGrid(context, state.images, defaultSize),
+                  ]),
+            ),
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Container(
+                padding: EdgeInsets.only(right: defaultSize * 2),
+                alignment: Alignment.bottomRight,
+                child: IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.arrow_forward_rounded),
+                  color: DesignTheme.colors.btnColor,
+                  iconSize: defaultSize * 8,
+                ),
+              ),
             )
           ],
         ));
@@ -85,6 +100,7 @@ class Body extends StatelessWidget {
         ),
       );
     }
+
     return widgetList;
   }
 }
