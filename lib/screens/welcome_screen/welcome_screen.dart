@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:collage/bloc/photos/photos_bloc.dart';
 import 'package:collage/config/config.dart';
 import 'package:collage/config/status.dart';
@@ -8,7 +6,6 @@ import 'package:collage/screens/photos_screen/photos_screen.dart';
 import 'package:collage/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:multi_image_picker/multi_image_picker.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String id = 'welcome_screen';
@@ -31,11 +28,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             Navigator.pushNamed(context, PhotosScreen.id);
           }
         },
-        child: Container(
-          width: SizeConfig.blockSizeHorizontal * 100,
-          decoration: BoxDecoration(
-            gradient: DesignTheme.colors.mainGradientColor,
-          ),
+        child: BackgroundWrapper(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -47,15 +40,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               MainBtn(
                 getImg: () {
                   context.bloc<PhotosBloc>().add(PhotosEvent.loadeImgs());
-                  //   Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) {
-                  //         return PhotosScreen();
-                  //       },
-                  //     ),
-
-                  // );
                 },
               )
             ],

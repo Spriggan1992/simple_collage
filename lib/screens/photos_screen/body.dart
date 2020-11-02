@@ -1,4 +1,6 @@
+import 'package:collage/bloc/blocks.dart';
 import 'package:collage/bloc/photos/photos_bloc.dart';
+import 'package:collage/screens/screens.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:collage/config/config.dart';
 import 'package:collage/design/theme.dart';
@@ -17,47 +19,45 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final defaultSize = SizeConfig.defaultSize;
-    return Container(
-        width: SizeConfig.blockSizeHorizontal * 100,
-        height: SizeConfig.blockSizeVertical * 100,
-        decoration: BoxDecoration(
-          gradient: DesignTheme.colors.mainGradientColor,
-        ),
+    return BackgroundWrapper(
         child: CustomScrollView(
-          physics: ScrollPhysics(
-            parent: BouncingScrollPhysics(),
-          ),
-          slivers: [
-            SliverToBoxAdapter(
-                child: Padding(
-              padding: EdgeInsets.only(top: defaultSize * 2),
-              child: Center(child: TitleHolder(title: 'Swap to delete')),
-            )),
-            SliverPadding(
-              padding: EdgeInsets.all(defaultSize * 2),
-              sliver: SliverGrid.count(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: defaultSize * 2,
-                  crossAxisSpacing: defaultSize * 2,
-                  children: [
-                    ...buildGrid(context, state.images, defaultSize),
-                  ]),
+      physics: ScrollPhysics(
+        parent: BouncingScrollPhysics(),
+      ),
+      slivers: [
+        SliverToBoxAdapter(
+            child: Padding(
+          padding: EdgeInsets.only(top: defaultSize * 2),
+          child: Center(child: TitleHolder(title: 'Swap to delete')),
+        )),
+        SliverPadding(
+          padding: EdgeInsets.all(defaultSize * 2),
+          sliver: SliverGrid.count(
+              crossAxisCount: 2,
+              mainAxisSpacing: defaultSize * 2,
+              crossAxisSpacing: defaultSize * 2,
+              children: [
+                ...buildGrid(context, state.images, defaultSize),
+              ]),
+        ),
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: Container(
+            padding: EdgeInsets.only(right: defaultSize * 2),
+            alignment: Alignment.bottomRight,
+            child: IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, CollageScreen.id);
+                context.bloc<CollageBloc>().add(CollageEvent.loaded());
+              },
+              icon: Icon(Icons.arrow_forward_rounded),
+              color: DesignTheme.colors.btnColor,
+              iconSize: defaultSize * 8,
             ),
-            SliverFillRemaining(
-              hasScrollBody: false,
-              child: Container(
-                padding: EdgeInsets.only(right: defaultSize * 2),
-                alignment: Alignment.bottomRight,
-                child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.arrow_forward_rounded),
-                  color: DesignTheme.colors.btnColor,
-                  iconSize: defaultSize * 8,
-                ),
-              ),
-            )
-          ],
-        ));
+          ),
+        )
+      ],
+    ));
   }
 
   List<Widget> buildGrid(

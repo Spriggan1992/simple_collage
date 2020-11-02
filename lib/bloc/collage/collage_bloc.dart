@@ -22,7 +22,7 @@ class CollageBloc extends Bloc<CollageEvent, CollageState> {
   ) async* {
     yield* event.map(loaded: (event) async* {
       final List<Asset> updateImgs = _photosBloc.state.images;
-      yield state.copyWith(images: updateImgs);
+      yield state.copyWith(images: updateImgs ?? []);
     });
   }
 }
